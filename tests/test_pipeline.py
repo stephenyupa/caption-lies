@@ -58,3 +58,11 @@ def test_holm_matches_hand_calculation():
 
     # Sorted p: .005, .01, .03, .04 -> x4, x3, x2, x1, then made non-decreasing.
     assert holm([0.01, 0.04, 0.03, 0.005]) == pytest.approx([0.03, 0.06, 0.06, 0.02])
+
+
+def test_cohen_kappa_matches_hand_calculation():
+    from annotate import cohen_kappa
+
+    # Observed agreement 0.75, chance agreement 0.5 -> kappa 0.5.
+    assert cohen_kappa(["a", "a", "b", "b"], ["a", "b", "b", "b"]) == pytest.approx(0.5)
+    assert cohen_kappa(["a", "b"], ["a", "b"]) == pytest.approx(1.0)

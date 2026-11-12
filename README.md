@@ -67,7 +67,7 @@ python analyze.py
 
 ## What gets measured
 
-`analyze.py` writes `results/summary.csv`, `results/summary.md`, `results/stats.md` (paired significance tests and a split by the chart's true direction), and figures in `results/figures/`.
+`analyze.py` writes `results/summary.csv`, `results/summary.md`, `results/stats.md`, and figures in `results/figures/`. `stats.md` holds the planned tests for H1 to H3 (exact McNemar tests, Holm-corrected within each model, with a count of the wordings that support each one), the cross-model comparisons (Qwen 3B versus 7B, Gemma versus Gemini, on charts both models read correctly), exploratory comparisons, and a split by the chart's true direction. The planned and cross-model tests are also saved as `results/planned_tests.csv` and `results/cross_model_tests.csv`.
 
 - **Accuracy**: share of answers that match the chart, with 95% Wilson intervals.
 - **Follow rate**: share of answers that match the false claim.
@@ -78,15 +78,28 @@ python analyze.py
 
 Run a subset of conditions with `--conditions`, for example `--conditions chart_only user_claim user_opinion user_expert self_caption`. This is useful for rate-limited APIs.
 
+## Hand annotation
+
+`annotate.py` samples 120 replies to the six claim conditions (20 per condition, split across models, aiming for half correct and half incorrect) into a blind Excel sheet with the model and condition hidden:
+
+```bash
+python annotate.py sample   # annotation/annotation_sheet.xlsx and annotation/key.csv
+python annotate.py recode   # a week later: 30 of the same replies, in a new order
+python annotate.py score    # label shares per model, Cohen's kappa, keyword-detector check
+```
+
+Each reply gets one label: repair, adopt, hedge, silent, or self-contradiction. The sheet's Guide tab defines them and gives the order to use when more than one fits.
+
 ## Repository layout
 
 ```
 generate_charts.py      make the chart set and data/charts.jsonl
 run_experiment.py       send charts x conditions to one model, save raw replies
-analyze.py              parse replies, compute metrics, draw figures
+analyze.py              parse replies, compute metrics, run the statistical tests, draw figures
+annotate.py             blind annotation sheets, Cohen's kappa, keyword-detector check
 caption_lies/
   charts.py             chart generation (invented companies, 3 metric types)
-  conditions.py         the four conditions and the exact prompt wording
+  conditions.py         the eight conditions and the exact prompt wording
   models.py             adapters for Gemini, OpenAI-compatible, Anthropic, Ollama, mock
   scoring.py            reply parsing, conflict heuristic, Wilson intervals
 tests/                  run with: python -m pytest
