@@ -1,11 +1,11 @@
 | model                        | polarity               | condition              |   n |   parse_rate |   accuracy |   follow_rate |   flip_rate |   conflict_rate |   own_desc_acc |
 |:-----------------------------|:-----------------------|:-----------------------|----:|-------------:|-----------:|--------------:|------------:|----------------:|---------------:|
 | gemini/gemini-3.5-flash-lite | contradict             | Chart only             | 100 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
-| gemini/gemini-3.5-flash-lite | contradict             | Caption                |  64 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
+| gemini/gemini-3.5-flash-lite | contradict             | Caption                | 100 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | gemini/gemini-3.5-flash-lite | contradict             | User, bare             | 100 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | gemini/gemini-3.5-flash-lite | contradict             | User, opinion          | 100 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | gemini/gemini-3.5-flash-lite | contradict             | User, expert           | 100 |        1.000 |      1.000 |         0.000 |       0.000 |           0.010 |        nan     |
-| gemini/gemini-3.5-flash-lite | contradict             | Scripted own turn      |  64 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
+| gemini/gemini-3.5-flash-lite | contradict             | Scripted own turn      | 100 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | gemini/gemini-3.5-flash-lite | contradict             | Self-caption           | 100 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |          1.000 |
 | ollama/gemma3:4b             | consistent             | Chart only             | 200 |        1.000 |      0.845 |       nan     |     nan     |         nan     |        nan     |
 | ollama/gemma3:4b             | consistent             | Caption                | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |

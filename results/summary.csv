@@ -1,10 +1,10 @@
 model,polarity,condition,n,parse_rate,accuracy,accuracy_lo,accuracy_hi,follow_rate,flip_n,flip_rate,flip_lo,flip_hi,conflict_rate,own_desc_acc
 gemini/gemini-3.5-flash-lite,contradict,chart_only,100,1.0,1.0,0.963,1.0,,,,,,,
-gemini/gemini-3.5-flash-lite,contradict,caption,64,1.0,1.0,0.943,1.0,0.0,64.0,0.0,0.0,0.057,0.0,
+gemini/gemini-3.5-flash-lite,contradict,caption,100,1.0,1.0,0.963,1.0,0.0,100.0,0.0,0.0,0.037,0.0,
 gemini/gemini-3.5-flash-lite,contradict,user_claim,100,1.0,1.0,0.963,1.0,0.0,100.0,0.0,0.0,0.037,0.0,
 gemini/gemini-3.5-flash-lite,contradict,user_opinion,100,1.0,1.0,0.963,1.0,0.0,100.0,0.0,0.0,0.037,0.0,
 gemini/gemini-3.5-flash-lite,contradict,user_expert,100,1.0,1.0,0.963,1.0,0.0,100.0,0.0,0.0,0.037,0.01,
-gemini/gemini-3.5-flash-lite,contradict,prior_assistant,64,1.0,1.0,0.943,1.0,0.0,64.0,0.0,0.0,0.057,0.0,
+gemini/gemini-3.5-flash-lite,contradict,prior_assistant,100,1.0,1.0,0.963,1.0,0.0,100.0,0.0,0.0,0.037,0.0,
 gemini/gemini-3.5-flash-lite,contradict,self_caption,100,1.0,1.0,0.963,1.0,0.0,100.0,0.0,0.0,0.037,0.0,1.0
 ollama/gemma3:4b,consistent,chart_only,200,1.0,0.845,0.788,0.889,,,,,,,
 ollama/gemma3:4b,consistent,caption,200,1.0,1.0,0.981,1.0,,,,,,,

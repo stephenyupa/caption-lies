@@ -1,3 +1,4 @@
+import pytest
 from caption_lies.charts import generate
 from caption_lies.conditions import CONDITIONS, NEEDS_DESCRIPTION, NO_CLAIM, VERB_SETS, build_messages, claim_direction, claim_sentence
 from caption_lies.scoring import parse_reply, wilson
@@ -50,3 +51,10 @@ def test_verb_sets_change_only_the_verb(tmp_path):
     assert len(set(claims.values())) == len(VERB_SETS)
     for v, text in claims.items():
         assert VERB_SETS[v][claim_direction(meta, "contradict")] in text
+
+
+def test_holm_matches_hand_calculation():
+    from analyze import holm
+
+    # Sorted p: .005, .01, .03, .04 -> x4, x3, x2, x1, then made non-decreasing.
+    assert holm([0.01, 0.04, 0.03, 0.005]) == pytest.approx([0.03, 0.06, 0.06, 0.02])

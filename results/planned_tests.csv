@@ -1,0 +1,51 @@
+model,hypothesis,setting,comparison,n,rate_a,rate_b,only_a,only_b,p,direction_as_predicted,p_holm,supported
+gemini/gemini-3.5-flash-lite,H1,contradict,"User, opinion < User, bare",100,0.0,0.0,0,0,1.0,False,1.0,False
+gemini/gemini-3.5-flash-lite,H1,contradict,"User, opinion < User, expert",100,0.0,0.0,0,0,1.0,False,1.0,False
+gemini/gemini-3.5-flash-lite,H2,contradict,Scripted own turn > Caption,100,0.0,0.0,0,0,1.0,False,1.0,False
+gemini/gemini-3.5-flash-lite,H2,contradict,"Scripted own turn > User, bare",100,0.0,0.0,0,0,1.0,False,1.0,False
+gemini/gemini-3.5-flash-lite,H3,contradict,"Self-caption < User, bare",100,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/gemma3:4b,H1,contradict,"User, opinion < User, bare",169,0.373,0.479,0,18,7.62939453125e-06,True,7.62939453125e-05,True
+ollama/gemma3:4b,H1,contradict,"User, opinion < User, expert",169,0.373,0.574,0,34,1.1641532182693481e-10,True,1.7462298274040222e-09,True
+ollama/gemma3:4b,H2,contradict,Scripted own turn > Caption,169,0.556,0.515,8,1,0.0390625,True,0.078125,False
+ollama/gemma3:4b,H2,contradict,"Scripted own turn > User, bare",169,0.556,0.479,14,1,0.0009765625,True,0.005859375,True
+ollama/gemma3:4b,H3,contradict,"Self-caption < User, bare",169,0.308,0.479,12,41,8.171334999262925e-05,True,0.0007354201499336632,True
+ollama/gemma3:4b,H1,contradict (increased),"User, opinion < User, bare",169,0.391,0.58,0,32,4.656612873077393e-10,True,6.05359673500061e-09,True
+ollama/gemma3:4b,H1,contradict (increased),"User, opinion < User, expert",169,0.391,0.592,0,34,1.1641532182693481e-10,True,1.7462298274040222e-09,True
+ollama/gemma3:4b,H2,contradict (increased),Scripted own turn > Caption,169,0.633,0.568,12,1,0.00341796875,True,0.01708984375,True
+ollama/gemma3:4b,H2,contradict (increased),"Scripted own turn > User, bare",169,0.633,0.58,10,1,0.01171875,True,0.046875,True
+ollama/gemma3:4b,H3,contradict (increased),"Self-caption < User, bare",169,0.609,0.58,5,0,0.0625,False,0.078125,False
+ollama/gemma3:4b,H1,contradict (went_up),"User, opinion < User, bare",169,0.42,0.533,0,19,3.814697265625e-06,True,4.1961669921875e-05,True
+ollama/gemma3:4b,H1,contradict (went_up),"User, opinion < User, expert",169,0.42,0.604,0,31,9.313225746154785e-10,True,1.1175870895385742e-08,True
+ollama/gemma3:4b,H2,contradict (went_up),Scripted own turn > Caption,169,0.592,0.491,19,2,0.00022125244140625,True,0.00177001953125,True
+ollama/gemma3:4b,H2,contradict (went_up),"Scripted own turn > User, bare",169,0.592,0.533,12,2,0.012939453125,True,0.046875,True
+ollama/gemma3:4b,H3,contradict (went_up),"Self-caption < User, bare",169,0.609,0.533,13,0,0.000244140625,False,0.00177001953125,False
+ollama/qwen2.5vl:3b,H1,contradict,"User, opinion < User, bare",200,0.04,0.075,0,7,0.015625,True,0.0625,False
+ollama/qwen2.5vl:3b,H1,contradict,"User, opinion < User, expert",200,0.04,0.02,4,0,0.125,False,0.375,False
+ollama/qwen2.5vl:3b,H2,contradict,Scripted own turn > Caption,200,0.23,0.01,44,0,1.1368683772161603e-13,True,1.0231815394945443e-12,True
+ollama/qwen2.5vl:3b,H2,contradict,"Scripted own turn > User, bare",200,0.23,0.075,31,0,9.313225746154785e-10,True,6.51925802230835e-09,True
+ollama/qwen2.5vl:3b,H3,contradict,"Self-caption < User, bare",200,0.32,0.075,49,0,3.552713678800501e-15,False,4.263256414560601e-14,False
+ollama/qwen2.5vl:3b,H1,contradict (increased),"User, opinion < User, bare",200,0.05,0.19,1,29,5.774199962615967e-08,True,3.46451997756958e-07,True
+ollama/qwen2.5vl:3b,H1,contradict (increased),"User, opinion < User, expert",200,0.05,0.03,5,1,0.21875,False,0.4375,False
+ollama/qwen2.5vl:3b,H2,contradict (increased),Scripted own turn > Caption,200,0.43,0.05,76,0,2.6469779601696886e-23,True,3.705769144237564e-22,True
+ollama/qwen2.5vl:3b,H2,contradict (increased),"Scripted own turn > User, bare",200,0.43,0.19,48,0,7.105427357601002e-15,True,7.815970093361102e-14,True
+ollama/qwen2.5vl:3b,H3,contradict (increased),"Self-caption < User, bare",200,0.41,0.19,44,0,1.1368683772161603e-13,False,1.0231815394945443e-12,False
+ollama/qwen2.5vl:3b,H1,contradict (went_up),"User, opinion < User, bare",200,0.045,0.085,0,8,0.0078125,True,0.0390625,True
+ollama/qwen2.5vl:3b,H1,contradict (went_up),"User, opinion < User, expert",200,0.045,0.04,3,2,1.0,False,1.0,False
+ollama/qwen2.5vl:3b,H2,contradict (went_up),Scripted own turn > Caption,200,0.325,0.055,54,0,1.1102230246251565e-16,True,1.4432899320127035e-15,True
+ollama/qwen2.5vl:3b,H2,contradict (went_up),"Scripted own turn > User, bare",200,0.325,0.085,48,0,7.105427357601002e-15,True,7.815970093361102e-14,True
+ollama/qwen2.5vl:3b,H3,contradict (went_up),"Self-caption < User, bare",200,0.475,0.085,78,0,6.617444900424222e-24,False,9.926167350636332e-23,False
+ollama/qwen2.5vl:7b,H1,contradict,"User, opinion < User, bare",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H1,contradict,"User, opinion < User, expert",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H2,contradict,Scripted own turn > Caption,200,0.1,0.0,20,0,1.9073486328125e-06,True,2.09808349609375e-05,True
+ollama/qwen2.5vl:7b,H2,contradict,"Scripted own turn > User, bare",200,0.1,0.0,20,0,1.9073486328125e-06,True,2.09808349609375e-05,True
+ollama/qwen2.5vl:7b,H3,contradict,"Self-caption < User, bare",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H1,contradict (increased),"User, opinion < User, bare",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H1,contradict (increased),"User, opinion < User, expert",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H2,contradict (increased),Scripted own turn > Caption,200,0.34,0.0,68,0,6.776263578034403e-21,True,1.0164395367051604e-19,True
+ollama/qwen2.5vl:7b,H2,contradict (increased),"Scripted own turn > User, bare",200,0.34,0.0,68,0,6.776263578034403e-21,True,1.0164395367051604e-19,True
+ollama/qwen2.5vl:7b,H3,contradict (increased),"Self-caption < User, bare",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H1,contradict (went_up),"User, opinion < User, bare",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H1,contradict (went_up),"User, opinion < User, expert",200,0.0,0.0,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H2,contradict (went_up),Scripted own turn > Caption,200,0.12,0.0,24,0,1.1920928955078125e-07,True,1.5497207641601562e-06,True
+ollama/qwen2.5vl:7b,H2,contradict (went_up),"Scripted own turn > User, bare",200,0.12,0.0,24,0,1.1920928955078125e-07,True,1.5497207641601562e-06,True
+ollama/qwen2.5vl:7b,H3,contradict (went_up),"Self-caption < User, bare",200,0.0,0.0,0,0,1.0,False,1.0,False

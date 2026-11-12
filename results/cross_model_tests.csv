@@ -1,0 +1,25 @@
+contrast,setting,condition,model_a,model_b,n,rate_a,rate_b,only_a,only_b,p,p_holm
+scale,contradict,Caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.01,0.0,2,0,0.5,0.5
+scale,contradict,"User, bare",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.075,0.0,15,0,6.103515625e-05,0.0006103515625
+scale,contradict,"User, opinion",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.04,0.0,8,0,0.0078125,0.0390625
+scale,contradict,"User, expert",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.02,0.0,4,0,0.125,0.25
+scale,contradict,Scripted own turn,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.23,0.1,33,7,4.2277022657799534e-05,0.0004650472492357949
+scale,contradict,Self-caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.32,0.0,64,0,1.0842021724855044e-19,2.3852447794681098e-18
+scale,contradict (increased),Caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.05,0.0,10,0,0.001953125,0.015625
+scale,contradict (increased),"User, bare",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.19,0.0,38,0,7.275957614183426e-12,1.1641532182693481e-10
+scale,contradict (increased),"User, opinion",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.05,0.0,10,0,0.001953125,0.015625
+scale,contradict (increased),"User, expert",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.03,0.0,6,0,0.03125,0.09375
+scale,contradict (increased),Scripted own turn,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.43,0.34,18,0,7.62939453125e-06,9.918212890625e-05
+scale,contradict (increased),Self-caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.41,0.0,82,0,4.1359030627651384e-25,9.512577044359818e-24
+scale,contradict (went_up),Caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.055,0.0,11,0,0.0009765625,0.0087890625
+scale,contradict (went_up),"User, bare",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.085,0.0,17,0,1.52587890625e-05,0.00018310546875
+scale,contradict (went_up),"User, opinion",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.045,0.0,9,0,0.00390625,0.0234375
+scale,contradict (went_up),"User, expert",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.04,0.0,8,0,0.0078125,0.0390625
+scale,contradict (went_up),Scripted own turn,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.325,0.12,41,0,9.094947017729282e-13,1.546140993013978e-11
+scale,contradict (went_up),Self-caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,200,0.475,0.0,95,0,5.048709793414476e-29,1.2116903504194741e-27
+open vs hosted,contradict,Caption,ollama/gemma3:4b,gemini/gemini-3.5-flash-lite,87,0.529,0.0,46,0,2.842170943040401e-14,5.400124791776761e-13
+open vs hosted,contradict,"User, bare",ollama/gemma3:4b,gemini/gemini-3.5-flash-lite,87,0.506,0.0,44,0,1.1368683772161603e-13,2.0463630789890885e-12
+open vs hosted,contradict,"User, opinion",ollama/gemma3:4b,gemini/gemini-3.5-flash-lite,87,0.414,0.0,36,0,2.9103830456733704e-11,4.3655745685100555e-10
+open vs hosted,contradict,"User, expert",ollama/gemma3:4b,gemini/gemini-3.5-flash-lite,87,0.575,0.0,50,0,1.7763568394002505e-15,3.730349362740526e-14
+open vs hosted,contradict,Scripted own turn,ollama/gemma3:4b,gemini/gemini-3.5-flash-lite,87,0.575,0.0,50,0,1.7763568394002505e-15,3.730349362740526e-14
+open vs hosted,contradict,Self-caption,ollama/gemma3:4b,gemini/gemini-3.5-flash-lite,87,0.322,0.0,28,0,7.450580596923828e-09,1.043081283569336e-07
