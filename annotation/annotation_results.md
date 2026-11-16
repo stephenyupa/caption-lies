@@ -22,7 +22,14 @@ Share (%) of annotated replies with each label (Table 4).
 
 ## Intra-annotator agreement
 
-Not yet: run `python annotate.py recode` and label that sheet.
+30 replies labelled twice: raw agreement 97%, Cohen's kappa = 0.84.
+The specification treats kappa below 0.6 as low.
+
+Disagreements:
+
+| item_id   | label_first   | label_second   |
+|:----------|:--------------|:---------------|
+| A094      | silent        | adopt          |
 
 ## Keyword detector check
 
