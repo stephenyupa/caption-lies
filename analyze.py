@@ -41,7 +41,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 
-from caption_lies.conditions import CONDITIONS, NO_CLAIM  # noqa: E402
+from caption_lies.conditions import CONDITIONS, CORE_CLAIM_CONDITIONS, NO_CLAIM  # noqa: E402
 from caption_lies.scoring import flags_conflict, parse_reply, wilson  # noqa: E402
 
 # Categorical palette (validated order); one color per model.
@@ -57,7 +57,15 @@ LABELS = {
     "prior_assistant": "Scripted own turn",
     "self_caption": "Self-caption",
     "self_caption_noclaim": "Self-caption, no claim",
+    "user_earlier": "User, earlier turn",
 }
+
+# Control added after the main runs: is the own-turn effect about who states the claim
+# (role) or where it sits in the conversation (position)? Same structure as PLANNED.
+ROLE_POSITION = [
+    ("role", "prior_assistant", "user_earlier", ">"),   # same turn position, different speaker
+    ("position", "user_earlier", "user_claim", ">"),    # same speaker, earlier versus final turn
+]
 
 # The five planned comparisons from the project specification. Each entry is
 # (hypothesis, condition a, condition b, predicted sign of rate_a - rate_b).
@@ -224,7 +232,7 @@ def cross_model_tests(df: pd.DataFrame) -> pd.DataFrame:
                   & set(df.loc[df["model_label"] == m2, "setting"]))
         for setting in sorted(s for s in shared if s.startswith("contradict")):
             p1, p2 = flip_table(df, m1, setting, both), flip_table(df, m2, setting, both)
-            for cond in [c for c in CONDITIONS if c not in NO_CLAIM]:
+            for cond in CORE_CLAIM_CONDITIONS:
                 if cond not in p1 or cond not in p2:
                     continue
                 pair = pd.concat([p1[cond].rename("a"), p2[cond].rename("b")], axis=1).dropna().astype(bool)
@@ -235,6 +243,33 @@ def cross_model_tests(df: pd.DataFrame) -> pd.DataFrame:
     out = pd.DataFrame(rows)
     if not out.empty:
         out["p_holm"] = holm(out["p"].tolist())
+    return out
+
+
+def role_position_tests(df: pd.DataFrame) -> pd.DataFrame:
+    """Own turn versus the same claim from the user in the same earlier turn, and that
+    earlier user turn versus the bare final-turn claim. Holm-corrected within each model."""
+    rows = []
+    for label in sorted(df["model_label"].unique()):
+        ok = baseline_ok(df, label)
+        for setting in sorted(s for s in df.loc[df["model_label"] == label, "setting"].unique()
+                              if s.startswith("contradict")):
+            piv = flip_table(df, label, setting, ok)
+            for contrast, a, b, sign in ROLE_POSITION:
+                if a not in piv or b not in piv:
+                    continue
+                pair = piv[[a, b]].dropna().astype(bool)
+                if len(pair) < MIN_PAIRS:
+                    continue
+                r = mcnemar(pair[a], pair[b])
+                rows.append({"model": label, "contrast": contrast, "setting": setting,
+                             "comparison": f"{LABELS[a]} {sign} {LABELS[b]}", **r,
+                             "direction_as_predicted": (r["rate_a"] - r["rate_b"]) > 0})
+    out = pd.DataFrame(rows)
+    if not out.empty:
+        out["p_holm"] = np.nan
+        for _, idx in out.groupby("model").groups.items():
+            out.loc[idx, "p_holm"] = holm(out.loc[idx, "p"].tolist())
     return out
 
 
@@ -280,6 +315,12 @@ def paired_stats(df: pd.DataFrame) -> tuple:
               "the charts Gemini saw when Gemini is involved). p_holm treats all rows as one family.", ""]
     if not cross.empty:
         lines.append(_fmt(cross))
+    role = role_position_tests(df)
+    lines += ["", "# Role versus position of the claim (control added after the main runs)", "",
+              "Own turn versus the same claim stated by the user in the same earlier turn (role), and that",
+              "earlier user turn versus the bare claim in the final turn (position). Holm-corrected within",
+              "each model across these tests.", ""]
+    lines.append(_fmt(role) if not role.empty else "Not run yet: run the user_earlier condition.")
     lines += ["", "# Exploratory comparisons (not corrected)", ""]
     if not explore.empty:
         lines.append(_fmt(explore))
@@ -287,7 +328,8 @@ def paired_stats(df: pd.DataFrame) -> tuple:
               "Does a false claim of growth work as well as a false claim of decline?", ""]
     if not direction.empty:
         lines.append(direction.to_markdown(index=False, floatfmt=".3f"))
-    return "\n".join(lines) + "\n", {"planned_tests": planned, "cross_model_tests": cross}
+    return "\n".join(lines) + "\n", {"planned_tests": planned, "cross_model_tests": cross,
+                                      "role_position_tests": role}
 
 
 def summarize(df: pd.DataFrame) -> pd.DataFrame:

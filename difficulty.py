@@ -33,7 +33,7 @@ import numpy as np
 import pandas as pd
 
 MIN_FLIPS = 10
-NO_CLAIM = {"chart_only", "self_caption_noclaim"}
+from caption_lies.conditions import CORE_CLAIM_CONDITIONS
 
 
 def load_charts(data_dir: Path) -> dict:
@@ -72,7 +72,7 @@ def difficulty_models(df: pd.DataFrame, checks: pd.DataFrame, baseline_ok) -> pd
     rows = []
     for label in sorted(d["model_label"].unique()):
         x = d[(d["model_label"] == label) & d["setting"].str.startswith("contradict") & d["parsed"]
-              & ~d["condition"].isin(NO_CLAIM) & (d["truth"] == "increase")
+              & d["condition"].isin(CORE_CLAIM_CONDITIONS) & (d["truth"] == "increase")
               & d["chart_id"].isin(baseline_ok(df, label))].copy()
         x["fc"] = x["follows_claim"].astype(int)
         used = x.groupby("condition")["fc"].sum()

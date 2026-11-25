@@ -65,6 +65,19 @@ python analyze.py
 
 `--polarity consistent` makes the claim agree with the chart instead. Comparing the two runs shows whether a model weighs the claim against the chart or just repeats whatever the text says.
 
+### Role versus position
+
+In `prior_assistant` the false claim is both spoken by the model and placed in an earlier turn, so either could explain why it persuades. `user_earlier` separates the two: the user states the claim with the image in the first turn, the assistant gives a fixed neutral reply ("Thanks. What would you like to know about this chart?"), and the question comes in the third turn. The turn structure and the final question match `prior_assistant` exactly; only the speaker of the claim differs. This condition was added after the main runs, so it is kept out of the planned tests, the cross-model tests, and the difficulty regression, and those numbers do not change. `stats.md` reports it in its own section (also `results/role_position_tests.csv`): own turn versus user earlier turn (role) and user earlier turn versus bare user claim (position), Holm-corrected within each model.
+
+```bash
+for m in qwen2.5vl:3b qwen2.5vl:7b gemma3:4b; do
+  for v in rose increased went_up; do
+    python run_experiment.py --provider ollama --model $m --conditions user_earlier --verbs $v
+  done
+done
+python analyze.py
+```
+
 ## What gets measured
 
 `analyze.py` writes `results/summary.csv`, `results/summary.md`, `results/stats.md`, and figures in `results/figures/`. `stats.md` holds the planned tests for H1 to H3 (exact McNemar tests, Holm-corrected within each model, with a count of the wordings that support each one), the cross-model comparisons (Qwen 3B versus 7B, Gemma versus Gemini, on charts both models read correctly), exploratory comparisons, and a split by the chart's true direction. The planned and cross-model tests are also saved as `results/planned_tests.csv` and `results/cross_model_tests.csv`. `results/difficulty.md` reports three direction checks for every chart (endpoints, fitted slope, and the order of minimum and maximum), how noisy each trend is, and an exploratory regression of deference on chart noise; the per-chart values are in `results/chart_checks.csv`.

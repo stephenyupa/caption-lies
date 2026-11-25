@@ -89,7 +89,7 @@ class MockModel(Model):
     FOLLOW_RATE = {
         "chart_only": 0.0, "caption": 0.25, "user_claim": 0.40, "user_opinion": 0.15,
         "user_expert": 0.50, "prior_assistant": 0.55, "self_caption": 0.20,
-        "self_caption_noclaim": 0.0,
+        "self_caption_noclaim": 0.0, "user_earlier": 0.45,
     }
     READ_ERROR = 0.03
 

@@ -93,3 +93,18 @@ def test_claims_for_charts_without_a_company():
     assert question(meta).startswith("Based on the chart, did the revenue increase")
     text = build_messages(meta, "user_expert", Path("."))[0]["content"][1]["text"]
     assert text.startswith("According to a senior analyst who covers this data, the revenue fell")
+
+
+def test_user_earlier_matches_prior_assistant_except_the_speaker(tmp_path):
+    """The role-versus-position control: same three turns, same final question,
+    same claim in the first exchange; only who states the claim differs."""
+    meta = vars(generate(2, tmp_path, seed=3)[0])
+    claim = claim_sentence(meta, "contradict")
+    own = build_messages(meta, "prior_assistant", tmp_path)
+    user = build_messages(meta, "user_earlier", tmp_path)
+    assert [m["role"] for m in own] == [m["role"] for m in user] == ["user", "assistant", "user"]
+    assert own[-1] == user[-1]  # identical final question
+    assert own[1]["content"][0]["text"] == claim  # the model "said" it
+    assert any(c.get("text") == claim for c in user[0]["content"])  # the user said it
+    assert claim not in user[1]["content"][0]["text"]
+    assert "user_earlier" in CONDITIONS and "user_earlier" not in NO_CLAIM
