@@ -1,0 +1,19 @@
+model,contrast,setting,comparison,n,rate_a,rate_b,only_a,only_b,p,direction_as_predicted,p_holm
+ollama/gemma3:4b,role,contradict,"Scripted own turn > User, earlier turn",169,0.556,0.503,9,0,0.00390625,True,0.01953125
+ollama/gemma3:4b,position,contradict,"User, earlier turn > User, bare",169,0.503,0.479,9,5,0.4239501953125,True,1.0
+ollama/gemma3:4b,role,contradict (increased),"Scripted own turn > User, earlier turn",169,0.633,0.592,8,1,0.0390625,True,0.15625
+ollama/gemma3:4b,position,contradict (increased),"User, earlier turn > User, bare",169,0.592,0.58,2,0,0.5,True,1.0
+ollama/gemma3:4b,role,contradict (went_up),"Scripted own turn > User, earlier turn",169,0.592,0.592,2,2,1.0,False,1.0
+ollama/gemma3:4b,position,contradict (went_up),"User, earlier turn > User, bare",169,0.592,0.533,10,0,0.001953125,True,0.01171875
+ollama/qwen2.5vl:3b,role,contradict,"Scripted own turn > User, earlier turn",200,0.23,0.095,27,0,1.4901161193847656e-08,True,7.450580596923828e-08
+ollama/qwen2.5vl:3b,position,contradict,"User, earlier turn > User, bare",200,0.095,0.075,7,3,0.34375,True,0.34375
+ollama/qwen2.5vl:3b,role,contradict (increased),"Scripted own turn > User, earlier turn",200,0.43,0.325,21,0,9.5367431640625e-07,True,2.86102294921875e-06
+ollama/qwen2.5vl:3b,position,contradict (increased),"User, earlier turn > User, bare",200,0.325,0.19,28,1,1.1175870895385742e-07,True,4.470348358154297e-07
+ollama/qwen2.5vl:3b,role,contradict (went_up),"Scripted own turn > User, earlier turn",200,0.325,0.26,13,0,0.000244140625,True,0.00048828125
+ollama/qwen2.5vl:3b,position,contradict (went_up),"User, earlier turn > User, bare",200,0.26,0.085,35,0,5.820766091346741e-11,True,3.4924596548080444e-10
+ollama/qwen2.5vl:7b,role,contradict,"Scripted own turn > User, earlier turn",200,0.1,0.0,20,0,1.9073486328125e-06,True,7.62939453125e-06
+ollama/qwen2.5vl:7b,position,contradict,"User, earlier turn > User, bare",200,0.0,0.0,0,0,1.0,False,1.0
+ollama/qwen2.5vl:7b,role,contradict (increased),"Scripted own turn > User, earlier turn",200,0.34,0.0,68,0,6.776263578034403e-21,True,4.0657581468206416e-20
+ollama/qwen2.5vl:7b,position,contradict (increased),"User, earlier turn > User, bare",200,0.0,0.0,0,0,1.0,False,1.0
+ollama/qwen2.5vl:7b,role,contradict (went_up),"Scripted own turn > User, earlier turn",200,0.12,0.0,24,0,1.1920928955078125e-07,True,5.960464477539062e-07
+ollama/qwen2.5vl:7b,position,contradict (went_up),"User, earlier turn > User, bare",200,0.0,0.0,0,0,1.0,False,1.0

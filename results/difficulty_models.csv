@@ -1,0 +1,7 @@
+model,predictor,answers,charts,conditions,odds_ratio,ci_low,ci_high,p,flip_cleanest_third,flip_noisiest_third
+ollama/gemma3:4b,noise (per percentage point),1800,100,"caption, prior_assistant, self_caption, user_claim, user_expert, user_opinion",1.225,1.072,1.4,0.0028677147304958205,0.81,0.896
+ollama/gemma3:4b,size of change (per 10 points),1800,100,"caption, prior_assistant, self_caption, user_claim, user_expert, user_opinion",0.961,0.766,1.206,0.7309953792040629,0.81,0.896
+ollama/qwen2.5vl:3b,noise (per percentage point),1800,100,"caption, prior_assistant, self_caption, user_claim, user_expert, user_opinion",1.308,1.115,1.535,0.0009844794321109268,0.284,0.412
+ollama/qwen2.5vl:3b,size of change (per 10 points),1800,100,"caption, prior_assistant, self_caption, user_claim, user_expert, user_opinion",1.108,0.86,1.427,0.4280340099286758,0.284,0.412
+ollama/qwen2.5vl:7b,noise (per percentage point),300,100,prior_assistant,1.166,1.008,1.35,0.03849576849824888,0.402,0.394
+ollama/qwen2.5vl:7b,size of change (per 10 points),300,100,prior_assistant,0.752,0.555,1.017,0.06436925332026554,0.402,0.394

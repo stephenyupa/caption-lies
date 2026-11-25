@@ -22,18 +22,21 @@
 | ollama/gemma3:4b             | contradict             | Scripted own turn      | 200 |        1.000 |      0.375 |         0.625 |       0.556 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict             | Self-caption           | 200 |        1.000 |      0.585 |         0.415 |       0.308 |           0.000 |          0.834 |
 | ollama/gemma3:4b             | contradict             | Self-caption, no claim | 200 |        1.000 |      0.830 |       nan     |     nan     |         nan     |        nan     |
+| ollama/gemma3:4b             | contradict             | User, earlier turn     | 200 |        1.000 |      0.420 |         0.580 |       0.503 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (increased) | Caption                | 200 |        1.000 |      0.365 |         0.635 |       0.568 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (increased) | User, bare             | 200 |        1.000 |      0.355 |         0.645 |       0.580 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (increased) | User, opinion          | 200 |        1.000 |      0.515 |         0.485 |       0.391 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (increased) | User, expert           | 200 |        1.000 |      0.345 |         0.655 |       0.592 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (increased) | Scripted own turn      | 200 |        1.000 |      0.310 |         0.690 |       0.633 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (increased) | Self-caption           | 200 |        1.000 |      0.330 |         0.670 |       0.609 |           0.000 |          0.834 |
+| ollama/gemma3:4b             | contradict (increased) | User, earlier turn     | 200 |        1.000 |      0.345 |         0.655 |       0.592 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (went_up)   | Caption                | 200 |        1.000 |      0.430 |         0.570 |       0.491 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (went_up)   | User, bare             | 200 |        1.000 |      0.395 |         0.605 |       0.533 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (went_up)   | User, opinion          | 200 |        1.000 |      0.490 |         0.510 |       0.420 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (went_up)   | User, expert           | 200 |        1.000 |      0.335 |         0.665 |       0.604 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (went_up)   | Scripted own turn      | 200 |        1.000 |      0.345 |         0.655 |       0.592 |           0.000 |        nan     |
 | ollama/gemma3:4b             | contradict (went_up)   | Self-caption           | 200 |        1.000 |      0.330 |         0.670 |       0.609 |           0.000 |          0.834 |
+| ollama/gemma3:4b             | contradict (went_up)   | User, earlier turn     | 200 |        1.000 |      0.345 |         0.655 |       0.592 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | consistent             | Chart only             | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
 | ollama/qwen2.5vl:3b          | consistent             | Caption                | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
 | ollama/qwen2.5vl:3b          | consistent             | User, bare             | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
@@ -49,18 +52,21 @@
 | ollama/qwen2.5vl:3b          | contradict             | Scripted own turn      | 200 |        1.000 |      0.770 |         0.230 |       0.230 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict             | Self-caption           | 200 |        1.000 |      0.680 |         0.320 |       0.320 |           0.000 |          1.000 |
 | ollama/qwen2.5vl:3b          | contradict             | Self-caption, no claim | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
+| ollama/qwen2.5vl:3b          | contradict             | User, earlier turn     | 200 |        1.000 |      0.905 |         0.095 |       0.095 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (increased) | Caption                | 200 |        1.000 |      0.950 |         0.050 |       0.050 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (increased) | User, bare             | 200 |        1.000 |      0.810 |         0.190 |       0.190 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (increased) | User, opinion          | 200 |        1.000 |      0.950 |         0.050 |       0.050 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (increased) | User, expert           | 200 |        1.000 |      0.970 |         0.030 |       0.030 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (increased) | Scripted own turn      | 200 |        1.000 |      0.570 |         0.430 |       0.430 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (increased) | Self-caption           | 200 |        1.000 |      0.590 |         0.410 |       0.410 |           0.000 |          1.000 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | User, earlier turn     | 200 |        1.000 |      0.675 |         0.325 |       0.325 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (went_up)   | Caption                | 200 |        1.000 |      0.945 |         0.055 |       0.055 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (went_up)   | User, bare             | 200 |        1.000 |      0.915 |         0.085 |       0.085 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (went_up)   | User, opinion          | 200 |        1.000 |      0.955 |         0.045 |       0.045 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (went_up)   | User, expert           | 200 |        1.000 |      0.960 |         0.040 |       0.040 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (went_up)   | Scripted own turn      | 200 |        1.000 |      0.675 |         0.325 |       0.325 |           0.000 |        nan     |
 | ollama/qwen2.5vl:3b          | contradict (went_up)   | Self-caption           | 200 |        1.000 |      0.525 |         0.475 |       0.475 |           0.000 |          1.000 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, earlier turn     | 200 |        1.000 |      0.740 |         0.260 |       0.260 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | consistent             | Chart only             | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
 | ollama/qwen2.5vl:7b          | consistent             | Caption                | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
 | ollama/qwen2.5vl:7b          | consistent             | User, bare             | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
@@ -76,15 +82,18 @@
 | ollama/qwen2.5vl:7b          | contradict             | Scripted own turn      | 200 |        1.000 |      0.900 |         0.100 |       0.100 |           0.028 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict             | Self-caption           | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.005 |          1.000 |
 | ollama/qwen2.5vl:7b          | contradict             | Self-caption, no claim | 200 |        1.000 |      1.000 |       nan     |     nan     |         nan     |        nan     |
+| ollama/qwen2.5vl:7b          | contradict             | User, earlier turn     | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (increased) | Caption                | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (increased) | User, bare             | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (increased) | User, opinion          | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (increased) | User, expert           | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (increased) | Scripted own turn      | 200 |        1.000 |      0.660 |         0.340 |       0.340 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (increased) | Self-caption           | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |          1.000 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | User, earlier turn     | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (went_up)   | Caption                | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (went_up)   | User, bare             | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (went_up)   | User, opinion          | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (went_up)   | User, expert           | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (went_up)   | Scripted own turn      | 200 |        1.000 |      0.880 |         0.120 |       0.120 |           0.017 |        nan     |
 | ollama/qwen2.5vl:7b          | contradict (went_up)   | Self-caption           | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |          1.000 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, earlier turn     | 200 |        1.000 |      1.000 |         0.000 |       0.000 |           0.000 |        nan     |

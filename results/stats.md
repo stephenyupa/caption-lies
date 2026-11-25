@@ -119,6 +119,33 @@ the charts Gemini saw when Gemini is involved). p_holm treats all rows as one fa
 | open vs hosted | contradict             | Scripted own turn | ollama/gemma3:4b    | gemini/gemini-3.5-flash-lite |  87 |    0.575 |     0    |       50 |        0 | 1.8e-15 |  3.7e-14 |
 | open vs hosted | contradict             | Self-caption      | ollama/gemma3:4b    | gemini/gemini-3.5-flash-lite |  87 |    0.322 |     0    |       28 |        0 | 7.5e-09 |  1e-07   |
 
+# Role versus position of the claim (control added after the main runs)
+
+Own turn versus the same claim stated by the user in the same earlier turn (role), and that
+earlier user turn versus the bare claim in the final turn (position). Holm-corrected within
+each model across these tests.
+
+| model               | contrast   | setting                | comparison                             |   n |   rate_a |   rate_b |   only_a |   only_b |       p | direction_as_predicted   |   p_holm |
+|:--------------------|:-----------|:-----------------------|:---------------------------------------|----:|---------:|---------:|---------:|---------:|--------:|:-------------------------|---------:|
+| ollama/gemma3:4b    | role       | contradict             | Scripted own turn > User, earlier turn | 169 |    0.556 |    0.503 |        9 |        0 | 0.0039  | True                     |  0.02    |
+| ollama/gemma3:4b    | position   | contradict             | User, earlier turn > User, bare        | 169 |    0.503 |    0.479 |        9 |        5 | 0.42    | True                     |  1       |
+| ollama/gemma3:4b    | role       | contradict (increased) | Scripted own turn > User, earlier turn | 169 |    0.633 |    0.592 |        8 |        1 | 0.039   | True                     |  0.16    |
+| ollama/gemma3:4b    | position   | contradict (increased) | User, earlier turn > User, bare        | 169 |    0.592 |    0.58  |        2 |        0 | 0.5     | True                     |  1       |
+| ollama/gemma3:4b    | role       | contradict (went_up)   | Scripted own turn > User, earlier turn | 169 |    0.592 |    0.592 |        2 |        2 | 1       | False                    |  1       |
+| ollama/gemma3:4b    | position   | contradict (went_up)   | User, earlier turn > User, bare        | 169 |    0.592 |    0.533 |       10 |        0 | 0.002   | True                     |  0.012   |
+| ollama/qwen2.5vl:3b | role       | contradict             | Scripted own turn > User, earlier turn | 200 |    0.23  |    0.095 |       27 |        0 | 1.5e-08 | True                     |  7.5e-08 |
+| ollama/qwen2.5vl:3b | position   | contradict             | User, earlier turn > User, bare        | 200 |    0.095 |    0.075 |        7 |        3 | 0.34    | True                     |  0.34    |
+| ollama/qwen2.5vl:3b | role       | contradict (increased) | Scripted own turn > User, earlier turn | 200 |    0.43  |    0.325 |       21 |        0 | 9.5e-07 | True                     |  2.9e-06 |
+| ollama/qwen2.5vl:3b | position   | contradict (increased) | User, earlier turn > User, bare        | 200 |    0.325 |    0.19  |       28 |        1 | 1.1e-07 | True                     |  4.5e-07 |
+| ollama/qwen2.5vl:3b | role       | contradict (went_up)   | Scripted own turn > User, earlier turn | 200 |    0.325 |    0.26  |       13 |        0 | 0.00024 | True                     |  0.00049 |
+| ollama/qwen2.5vl:3b | position   | contradict (went_up)   | User, earlier turn > User, bare        | 200 |    0.26  |    0.085 |       35 |        0 | 5.8e-11 | True                     |  3.5e-10 |
+| ollama/qwen2.5vl:7b | role       | contradict             | Scripted own turn > User, earlier turn | 200 |    0.1   |    0     |       20 |        0 | 1.9e-06 | True                     |  7.6e-06 |
+| ollama/qwen2.5vl:7b | position   | contradict             | User, earlier turn > User, bare        | 200 |    0     |    0     |        0 |        0 | 1       | False                    |  1       |
+| ollama/qwen2.5vl:7b | role       | contradict (increased) | Scripted own turn > User, earlier turn | 200 |    0.34  |    0     |       68 |        0 | 6.8e-21 | True                     |  4.1e-20 |
+| ollama/qwen2.5vl:7b | position   | contradict (increased) | User, earlier turn > User, bare        | 200 |    0     |    0     |        0 |        0 | 1       | False                    |  1       |
+| ollama/qwen2.5vl:7b | role       | contradict (went_up)   | Scripted own turn > User, earlier turn | 200 |    0.12  |    0     |       24 |        0 | 1.2e-07 | True                     |  6e-07   |
+| ollama/qwen2.5vl:7b | position   | contradict (went_up)   | User, earlier turn > User, bare        | 200 |    0     |    0     |        0 |        0 | 1       | False                    |  1       |
+
 # Exploratory comparisons (not corrected)
 
 | model                        | setting                | comparison                        |   n |   rate_a |   rate_b |   only_a |   only_b |       p |
@@ -158,65 +185,74 @@ the charts Gemini saw when Gemini is involved). p_holm treats all rows as one fa
 
 Does a false claim of growth work as well as a false claim of decline?
 
-| model                        | setting                | condition         |   claim says 'rose' (chart fell) |   claim says 'fell' (chart rose) |
-|:-----------------------------|:-----------------------|:------------------|---------------------------------:|---------------------------------:|
-| gemini/gemini-3.5-flash-lite | contradict             | Caption           |                            0.000 |                            0.000 |
-| gemini/gemini-3.5-flash-lite | contradict             | Scripted own turn |                            0.000 |                            0.000 |
-| gemini/gemini-3.5-flash-lite | contradict             | Self-caption      |                            0.000 |                            0.000 |
-| gemini/gemini-3.5-flash-lite | contradict             | User, bare        |                            0.000 |                            0.000 |
-| gemini/gemini-3.5-flash-lite | contradict             | User, expert      |                            0.000 |                            0.000 |
-| gemini/gemini-3.5-flash-lite | contradict             | User, opinion     |                            0.000 |                            0.000 |
-| ollama/gemma3:4b             | contradict             | Caption           |                            0.043 |                            0.840 |
-| ollama/gemma3:4b             | contradict             | Scripted own turn |                            0.087 |                            0.880 |
-| ollama/gemma3:4b             | contradict             | Self-caption      |                            0.043 |                            0.490 |
-| ollama/gemma3:4b             | contradict             | User, bare        |                            0.043 |                            0.780 |
-| ollama/gemma3:4b             | contradict             | User, expert      |                            0.043 |                            0.940 |
-| ollama/gemma3:4b             | contradict             | User, opinion     |                            0.029 |                            0.610 |
-| ollama/gemma3:4b             | contradict (increased) | Caption           |                            0.043 |                            0.930 |
-| ollama/gemma3:4b             | contradict (increased) | Scripted own turn |                            0.130 |                            0.980 |
-| ollama/gemma3:4b             | contradict (increased) | Self-caption      |                            0.043 |                            1.000 |
-| ollama/gemma3:4b             | contradict (increased) | User, bare        |                            0.043 |                            0.950 |
-| ollama/gemma3:4b             | contradict (increased) | User, expert      |                            0.043 |                            0.970 |
-| ollama/gemma3:4b             | contradict (increased) | User, opinion     |                            0.043 |                            0.630 |
-| ollama/gemma3:4b             | contradict (went_up)   | Caption           |                            0.043 |                            0.800 |
-| ollama/gemma3:4b             | contradict (went_up)   | Scripted own turn |                            0.058 |                            0.960 |
-| ollama/gemma3:4b             | contradict (went_up)   | Self-caption      |                            0.043 |                            1.000 |
-| ollama/gemma3:4b             | contradict (went_up)   | User, bare        |                            0.043 |                            0.870 |
-| ollama/gemma3:4b             | contradict (went_up)   | User, expert      |                            0.043 |                            0.990 |
-| ollama/gemma3:4b             | contradict (went_up)   | User, opinion     |                            0.043 |                            0.680 |
-| ollama/qwen2.5vl:3b          | contradict             | Caption           |                            0.000 |                            0.020 |
-| ollama/qwen2.5vl:3b          | contradict             | Scripted own turn |                            0.000 |                            0.460 |
-| ollama/qwen2.5vl:3b          | contradict             | Self-caption      |                            0.000 |                            0.640 |
-| ollama/qwen2.5vl:3b          | contradict             | User, bare        |                            0.000 |                            0.150 |
-| ollama/qwen2.5vl:3b          | contradict             | User, expert      |                            0.000 |                            0.040 |
-| ollama/qwen2.5vl:3b          | contradict             | User, opinion     |                            0.000 |                            0.080 |
-| ollama/qwen2.5vl:3b          | contradict (increased) | Caption           |                            0.000 |                            0.100 |
-| ollama/qwen2.5vl:3b          | contradict (increased) | Scripted own turn |                            0.000 |                            0.860 |
-| ollama/qwen2.5vl:3b          | contradict (increased) | Self-caption      |                            0.000 |                            0.820 |
-| ollama/qwen2.5vl:3b          | contradict (increased) | User, bare        |                            0.000 |                            0.380 |
-| ollama/qwen2.5vl:3b          | contradict (increased) | User, expert      |                            0.000 |                            0.060 |
-| ollama/qwen2.5vl:3b          | contradict (increased) | User, opinion     |                            0.000 |                            0.100 |
-| ollama/qwen2.5vl:3b          | contradict (went_up)   | Caption           |                            0.000 |                            0.110 |
-| ollama/qwen2.5vl:3b          | contradict (went_up)   | Scripted own turn |                            0.000 |                            0.650 |
-| ollama/qwen2.5vl:3b          | contradict (went_up)   | Self-caption      |                            0.000 |                            0.950 |
-| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, bare        |                            0.000 |                            0.170 |
-| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, expert      |                            0.000 |                            0.080 |
-| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, opinion     |                            0.000 |                            0.090 |
-| ollama/qwen2.5vl:7b          | contradict             | Caption           |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict             | Scripted own turn |                            0.000 |                            0.200 |
-| ollama/qwen2.5vl:7b          | contradict             | Self-caption      |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict             | User, bare        |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict             | User, expert      |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict             | User, opinion     |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (increased) | Caption           |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (increased) | Scripted own turn |                            0.000 |                            0.680 |
-| ollama/qwen2.5vl:7b          | contradict (increased) | Self-caption      |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (increased) | User, bare        |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (increased) | User, expert      |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (increased) | User, opinion     |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (went_up)   | Caption           |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (went_up)   | Scripted own turn |                            0.000 |                            0.240 |
-| ollama/qwen2.5vl:7b          | contradict (went_up)   | Self-caption      |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, bare        |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, expert      |                            0.000 |                            0.000 |
-| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, opinion     |                            0.000 |                            0.000 |
+| model                        | setting                | condition          |   claim says 'rose' (chart fell) |   claim says 'fell' (chart rose) |
+|:-----------------------------|:-----------------------|:-------------------|---------------------------------:|---------------------------------:|
+| gemini/gemini-3.5-flash-lite | contradict             | Caption            |                            0.000 |                            0.000 |
+| gemini/gemini-3.5-flash-lite | contradict             | Scripted own turn  |                            0.000 |                            0.000 |
+| gemini/gemini-3.5-flash-lite | contradict             | Self-caption       |                            0.000 |                            0.000 |
+| gemini/gemini-3.5-flash-lite | contradict             | User, bare         |                            0.000 |                            0.000 |
+| gemini/gemini-3.5-flash-lite | contradict             | User, expert       |                            0.000 |                            0.000 |
+| gemini/gemini-3.5-flash-lite | contradict             | User, opinion      |                            0.000 |                            0.000 |
+| ollama/gemma3:4b             | contradict             | Caption            |                            0.043 |                            0.840 |
+| ollama/gemma3:4b             | contradict             | Scripted own turn  |                            0.087 |                            0.880 |
+| ollama/gemma3:4b             | contradict             | Self-caption       |                            0.043 |                            0.490 |
+| ollama/gemma3:4b             | contradict             | User, bare         |                            0.043 |                            0.780 |
+| ollama/gemma3:4b             | contradict             | User, earlier turn |                            0.043 |                            0.820 |
+| ollama/gemma3:4b             | contradict             | User, expert       |                            0.043 |                            0.940 |
+| ollama/gemma3:4b             | contradict             | User, opinion      |                            0.029 |                            0.610 |
+| ollama/gemma3:4b             | contradict (increased) | Caption            |                            0.043 |                            0.930 |
+| ollama/gemma3:4b             | contradict (increased) | Scripted own turn  |                            0.130 |                            0.980 |
+| ollama/gemma3:4b             | contradict (increased) | Self-caption       |                            0.043 |                            1.000 |
+| ollama/gemma3:4b             | contradict (increased) | User, bare         |                            0.043 |                            0.950 |
+| ollama/gemma3:4b             | contradict (increased) | User, earlier turn |                            0.043 |                            0.970 |
+| ollama/gemma3:4b             | contradict (increased) | User, expert       |                            0.043 |                            0.970 |
+| ollama/gemma3:4b             | contradict (increased) | User, opinion      |                            0.043 |                            0.630 |
+| ollama/gemma3:4b             | contradict (went_up)   | Caption            |                            0.043 |                            0.800 |
+| ollama/gemma3:4b             | contradict (went_up)   | Scripted own turn  |                            0.058 |                            0.960 |
+| ollama/gemma3:4b             | contradict (went_up)   | Self-caption       |                            0.043 |                            1.000 |
+| ollama/gemma3:4b             | contradict (went_up)   | User, bare         |                            0.043 |                            0.870 |
+| ollama/gemma3:4b             | contradict (went_up)   | User, earlier turn |                            0.043 |                            0.970 |
+| ollama/gemma3:4b             | contradict (went_up)   | User, expert       |                            0.043 |                            0.990 |
+| ollama/gemma3:4b             | contradict (went_up)   | User, opinion      |                            0.043 |                            0.680 |
+| ollama/qwen2.5vl:3b          | contradict             | Caption            |                            0.000 |                            0.020 |
+| ollama/qwen2.5vl:3b          | contradict             | Scripted own turn  |                            0.000 |                            0.460 |
+| ollama/qwen2.5vl:3b          | contradict             | Self-caption       |                            0.000 |                            0.640 |
+| ollama/qwen2.5vl:3b          | contradict             | User, bare         |                            0.000 |                            0.150 |
+| ollama/qwen2.5vl:3b          | contradict             | User, earlier turn |                            0.000 |                            0.190 |
+| ollama/qwen2.5vl:3b          | contradict             | User, expert       |                            0.000 |                            0.040 |
+| ollama/qwen2.5vl:3b          | contradict             | User, opinion      |                            0.000 |                            0.080 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | Caption            |                            0.000 |                            0.100 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | Scripted own turn  |                            0.000 |                            0.860 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | Self-caption       |                            0.000 |                            0.820 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | User, bare         |                            0.000 |                            0.380 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | User, earlier turn |                            0.000 |                            0.650 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | User, expert       |                            0.000 |                            0.060 |
+| ollama/qwen2.5vl:3b          | contradict (increased) | User, opinion      |                            0.000 |                            0.100 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | Caption            |                            0.000 |                            0.110 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | Scripted own turn  |                            0.000 |                            0.650 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | Self-caption       |                            0.000 |                            0.950 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, bare         |                            0.000 |                            0.170 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, earlier turn |                            0.000 |                            0.520 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, expert       |                            0.000 |                            0.080 |
+| ollama/qwen2.5vl:3b          | contradict (went_up)   | User, opinion      |                            0.000 |                            0.090 |
+| ollama/qwen2.5vl:7b          | contradict             | Caption            |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict             | Scripted own turn  |                            0.000 |                            0.200 |
+| ollama/qwen2.5vl:7b          | contradict             | Self-caption       |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict             | User, bare         |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict             | User, earlier turn |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict             | User, expert       |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict             | User, opinion      |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | Caption            |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | Scripted own turn  |                            0.000 |                            0.680 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | Self-caption       |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | User, bare         |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | User, earlier turn |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | User, expert       |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (increased) | User, opinion      |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | Caption            |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | Scripted own turn  |                            0.000 |                            0.240 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | Self-caption       |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, bare         |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, earlier turn |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, expert       |                            0.000 |                            0.000 |
+| ollama/qwen2.5vl:7b          | contradict (went_up)   | User, opinion      |                            0.000 |                            0.000 |
