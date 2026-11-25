@@ -1,0 +1,7 @@
+contrast,setting,condition,model_a,model_b,n,rate_a,rate_b,only_a,only_b,p,p_holm
+scale,contradict,Caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,40,0.125,0.1,1,0,1.0,1.0
+scale,contradict,"User, bare",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,40,0.1,0.075,1,0,1.0,1.0
+scale,contradict,"User, opinion",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,40,0.125,0.05,3,0,0.25,1.0
+scale,contradict,"User, expert",ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,40,0.075,0.1,1,2,1.0,1.0
+scale,contradict,Scripted own turn,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,40,0.125,0.3,0,7,0.015625,0.09375
+scale,contradict,Self-caption,ollama/qwen2.5vl:3b,ollama/qwen2.5vl:7b,40,0.125,0.05,3,0,0.25,1.0

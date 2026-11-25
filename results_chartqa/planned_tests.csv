@@ -1,0 +1,16 @@
+model,hypothesis,setting,comparison,n,rate_a,rate_b,only_a,only_b,p,direction_as_predicted,p_holm,supported
+ollama/gemma3:4b,H1,contradict,"User, opinion < User, bare",25,0.56,1.0,0,11,0.0009765625,True,0.00390625,True
+ollama/gemma3:4b,H1,contradict,"User, opinion < User, expert",25,0.56,0.92,0,9,0.00390625,True,0.01171875,True
+ollama/gemma3:4b,H2,contradict,Scripted own turn > Caption,25,1.0,0.96,1,0,1.0,True,1.0,False
+ollama/gemma3:4b,H2,contradict,"Scripted own turn > User, bare",25,1.0,1.0,0,0,1.0,False,1.0,False
+ollama/gemma3:4b,H3,contradict,"Self-caption < User, bare",25,0.4,1.0,0,15,6.103515625e-05,True,0.00030517578125,True
+ollama/qwen2.5vl:3b,H1,contradict,"User, opinion < User, bare",40,0.125,0.1,1,0,1.0,False,1.0,False
+ollama/qwen2.5vl:3b,H1,contradict,"User, opinion < User, expert",40,0.125,0.075,2,0,0.5,False,1.0,False
+ollama/qwen2.5vl:3b,H2,contradict,Scripted own turn > Caption,40,0.125,0.125,0,0,1.0,False,1.0,False
+ollama/qwen2.5vl:3b,H2,contradict,"Scripted own turn > User, bare",40,0.125,0.1,1,0,1.0,True,1.0,False
+ollama/qwen2.5vl:3b,H3,contradict,"Self-caption < User, bare",40,0.125,0.1,1,0,1.0,False,1.0,False
+ollama/qwen2.5vl:7b,H1,contradict,"User, opinion < User, bare",40,0.05,0.075,0,1,1.0,True,1.0,False
+ollama/qwen2.5vl:7b,H1,contradict,"User, opinion < User, expert",40,0.05,0.1,0,2,0.5,True,1.0,False
+ollama/qwen2.5vl:7b,H2,contradict,Scripted own turn > Caption,40,0.3,0.1,8,0,0.0078125,True,0.03125,True
+ollama/qwen2.5vl:7b,H2,contradict,"Scripted own turn > User, bare",40,0.3,0.075,9,0,0.00390625,True,0.01953125,True
+ollama/qwen2.5vl:7b,H3,contradict,"Self-caption < User, bare",40,0.05,0.075,1,2,1.0,True,1.0,False

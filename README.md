@@ -67,7 +67,7 @@ python analyze.py
 
 ## What gets measured
 
-`analyze.py` writes `results/summary.csv`, `results/summary.md`, `results/stats.md`, and figures in `results/figures/`. `stats.md` holds the planned tests for H1 to H3 (exact McNemar tests, Holm-corrected within each model, with a count of the wordings that support each one), the cross-model comparisons (Qwen 3B versus 7B, Gemma versus Gemini, on charts both models read correctly), exploratory comparisons, and a split by the chart's true direction. The planned and cross-model tests are also saved as `results/planned_tests.csv` and `results/cross_model_tests.csv`.
+`analyze.py` writes `results/summary.csv`, `results/summary.md`, `results/stats.md`, and figures in `results/figures/`. `stats.md` holds the planned tests for H1 to H3 (exact McNemar tests, Holm-corrected within each model, with a count of the wordings that support each one), the cross-model comparisons (Qwen 3B versus 7B, Gemma versus Gemini, on charts both models read correctly), exploratory comparisons, and a split by the chart's true direction. The planned and cross-model tests are also saved as `results/planned_tests.csv` and `results/cross_model_tests.csv`. `results/difficulty.md` reports three direction checks for every chart (endpoints, fitted slope, and the order of minimum and maximum), how noisy each trend is, and an exploratory regression of deference on chart noise; the per-chart values are in `results/chart_checks.csv`.
 
 - **Accuracy**: share of answers that match the chart, with 95% Wilson intervals.
 - **Follow rate**: share of answers that match the false claim.
@@ -77,6 +77,17 @@ python analyze.py
 - **Own-description accuracy** (`self_caption` only): share of the model's own first-step descriptions that got the direction right.
 
 Run a subset of conditions with `--conditions`, for example `--conditions chart_only user_claim user_opinion user_expert self_caption`. This is useful for rate-limited APIs.
+
+## Real-chart pilot (ChartQA)
+
+`data_chartqa/` holds 40 real charts from the ChartQA test set (Masry et al., 2022), 20 rising and 20 falling, chosen by `make_chartqa_pilot.py` (its docstring lists the selection rules). They run through the same conditions, claim template, question, and scoring as the synthetic charts; only the claim's subject changes ("The revenue fell between 2013 and 2020.") and the expert framing becomes "According to a senior analyst who covers this data,". ChartQA is released under GPL-3.0, so the copied images and tables keep that license (`data_chartqa/LICENSE_ChartQA`).
+
+```bash
+python run_experiment.py --provider ollama --model qwen2.5vl:3b --data data_chartqa --out results_chartqa/raw
+python run_experiment.py --provider ollama --model qwen2.5vl:7b --data data_chartqa --out results_chartqa/raw
+python run_experiment.py --provider ollama --model gemma3:4b    --data data_chartqa --out results_chartqa/raw
+python analyze.py --raw results_chartqa/raw --out results_chartqa --data data_chartqa
+```
 
 ## Hand annotation
 

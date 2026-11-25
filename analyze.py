@@ -7,6 +7,8 @@ Reads every results/raw/*.jsonl file and writes:
     results/stats.md            planned (Holm-corrected), cross-model and exploratory tests
     results/planned_tests.csv   the planned comparisons for H1 to H3, one row per test
     results/cross_model_tests.csv  Qwen 3B vs 7B and Gemma vs Gemini, one row per test
+    results/chart_checks.csv    direction checks and noise measures for every chart
+    results/difficulty.md       chart checks and the exploratory chart-noise analysis
     results/figures/*.png       accuracy and flip-rate charts
 
 Metrics:
@@ -374,6 +376,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--raw", default="results/raw")
     p.add_argument("--out", default="results")
+    p.add_argument("--data", default="data", help="folder with charts.jsonl, for the chart checks")
     args = p.parse_args()
 
     out = Path(args.out)
@@ -401,6 +404,15 @@ def main():
     for name, table in tables.items():
         table.to_csv(out / f"{name}.csv", index=False)
 
+    if (Path(args.data) / "charts.jsonl").exists() and not mock:
+        from difficulty import chart_checks, difficulty_models, difficulty_report, load_charts
+
+        checks = chart_checks(load_charts(Path(args.data)))
+        models = difficulty_models(df, checks, baseline_ok)
+        checks.to_csv(out / "chart_checks.csv", index=False)
+        models.to_csv(out / "difficulty_models.csv", index=False)
+        (out / "difficulty.md").write_text(difficulty_report(checks, models))
+
     # Figures leave out models with too few charts so far (for example a
     # rate-limited API partway through); they still appear in the tables.
     enough = summary[(summary["condition"] == "chart_only") & (summary["n"] >= 30)]["model"].unique()
@@ -417,7 +429,7 @@ def main():
                          out / "figures" / "flip_rate.png", mock)
 
     print(md.to_string(index=False))
-    print(f"\nWrote {out}/summary.csv, {out}/summary.md, {out}/stats.md, {out}/scored.csv and {out}/figures/")
+    print(f"\nWrote {out}/summary.csv, {out}/summary.md, {out}/stats.md, {out}/difficulty.md, {out}/scored.csv and {out}/figures/")
 
 
 if __name__ == "__main__":
