@@ -1,8 +1,10 @@
-# When the Caption Lies
+# WhoseClaim
+
+**Whose Claim Is It? Claim Source and Framing in Vision-Language Chart Reading**
 
 Do vision-language models believe a false claim over the chart in front of them, and does it matter **who** made the claim?
 
-This repository holds the code for my COSC 4463 (AI, Language & Interaction) final project. It builds a small test set of synthetic financial charts, pairs each chart with a claim that contradicts it, and varies where that claim comes from:
+This repository holds the code for my COSC 4463 (AI, Language & Interaction) final project. It builds WhoseClaim, a small test set of synthetic financial charts, pairs each chart with a claim that contradicts it, and varies where that claim comes from:
 
 | Condition | Where the false claim appears |
 |---|---|
